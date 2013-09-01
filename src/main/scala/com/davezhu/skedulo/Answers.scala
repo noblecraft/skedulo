@@ -1,6 +1,6 @@
 package com.davezhu.skedulo
 
-import scala.collection.immutable.IndexedSeq
+import scala.collection.immutable.{TreeSet, IndexedSeq}
 
 /**
  * @author: dzhu
@@ -65,6 +65,12 @@ object Answers {
       |   WHERE o.order_id = op.order_id AND o.client_id = c.client_id
       |   GROUP BY (c.name)
     """.stripMargin
+
+  }
+
+  def a5(numbers: Array[Int]) {
+
+    TreeSet(numbers: _*).foreach(println)
 
   }
 
