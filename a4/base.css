@@ -1,0 +1,35 @@
+
+input {
+    outline: none;
+    border: 2px solid #F0F0F0;
+}
+
+input:focus {
+    border: 2px solid #A0A0A0 !important;
+}
+
+input.good {
+    border: 2px solid green;
+}
+
+input.bad {
+    border: 2px solid red;
+}
+
+form {
+    width: 800px;
+}
+
+form ul {
+    list-style: none;
+}
+
+form ul li {
+    float: left;
+    display: block;
+    width: 70%;
+}
+
+form ul li.label {
+    width: 23%;
+}

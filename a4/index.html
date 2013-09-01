@@ -1,0 +1,113 @@
+<!-- Put your implementation here -->
+
+<html>
+<head>
+    <link rel="stylesheet" href="base.css"/>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var firstNameInput = $("input#firstName");
+            firstNameInput.validate = function() {
+                require(firstNameInput, size(3));
+            }
+            firstNameInput.blur(function() {
+                firstNameInput.validate();
+            });
+
+            var lastNameInput = $("input#lastName");
+            lastNameInput.validate = function() {
+                require(lastNameInput, size(3));
+            }
+            lastNameInput.blur(function() {
+                lastNameInput.validate();
+            });
+
+            var dobInput = $("input#dob");
+            dobInput.validate = function() {
+                require(dobInput, range(1900, 2010));
+            }
+            dobInput.blur(function() {
+                dobInput.validate();
+            });
+
+            var emailInput = $("input#email");
+            emailInput.validate = function() {
+                require(emailInput, format(/\w+@\w+\.\w+/, "username@domain.tld"));
+            }
+            emailInput.blur(function() {
+                emailInput.validate();
+            });
+
+            $("form#theForm").submit(function() {
+
+                var ok = firstNameInput.validate();
+                ok &= lastNameInput.validate();
+                ok &= dobInput.validate();
+                ok &= emailInput.validate();
+
+                if (ok) return true;
+                else return false;
+
+            });
+
+            function require(input, check) {
+                var error = check(input.val())
+                if (error) {
+                    input.removeClass('good');
+                    input.addClass('bad');
+                    return false;
+                }
+                input.removeClass('bad');
+                input.addClass('good');
+//              input.css("border", "1px solid black");
+                return true;
+            }
+
+            function format(regex, example) {
+                return function(x) {
+                    return regex.test(x) ? null : "Must be in the format " + example;
+                }
+            }
+
+            function range(min, max) {
+                return function(x) {
+                    var n = new Number(x);
+//                  window.alert('n: ' + n);
+                    return n >= min && n <= max ? null : "Must be between " + min + " and " + max;
+                }
+            }
+
+            function size(min) {
+                return function(x) {
+                    return x.length >= min ? null : "Minimum length " + min;
+                }
+            }
+
+
+        })
+    </script>
+</head>
+<body>
+<div>
+    <h1>A4</h1>
+    <pre>
+        Write a simple HTML form with the following fields, including a validator to validate each field is correct. Display an error message if there are any failures. You may use a javascript library if desired.
+        FirstName - Must be at least 3 characters
+        LastName - Must be at least 3 characters
+        Year of Birth ­ Must contain a year between 1900 and 2010 Email ­ Must match the format username@domain.tld*
+        * Don't worry about RFC compliant email checking, just use the given format
+    </pre>
+    <hr/>
+    <form id="theForm">
+        <ul>
+            <li class="label">First Name:</li><li><input type="text" id="firstName" name="firstName"/></li>
+            <li class="label">Last Name:</li><li><input type="text" id="lastName" name="lastName"/></li>
+            <li class="label">DOB:</li><li><input type="text" id="dob" name="dob"/></li>
+            <li class="label">Email:</li><li><input type="text" id="email" name="email"/></li>
+            <li class="label">&nbsp;</li><li><input type="submit" value="Submit"/></li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>
