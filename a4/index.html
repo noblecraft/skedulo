@@ -60,7 +60,6 @@
                 }
                 input.removeClass('bad');
                 input.addClass('good');
-//              input.css("border", "1px solid black");
                 return true;
             }
 
@@ -73,7 +72,6 @@
             function range(min, max) {
                 return function(x) {
                     var n = new Number(x);
-//                  window.alert('n: ' + n);
                     return n >= min && n <= max ? null : "Must be between " + min + " and " + max;
                 }
             }
