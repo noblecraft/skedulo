@@ -50,6 +50,24 @@ object Answers {
 
   }
 
+  def a3 {
+
+    // SQL statement that returns the name of all products ordered by ClientId '3'
+    """
+      | SELECT DISTINCT(description) FROM Order o, OrderProduct op
+      |   WHERE o.order_id = op.order_id AND o.client_id = 3
+      |
+    """.stripMargin
+
+    // SQL statement that summarises the total price of all orders, on a per client basis
+    """
+      | SELECT SUM(op.price), c.name FROM Order o, Client c, OrderProduct op
+      |   WHERE o.order_id = op.order_id AND o.client_id = c.client_id
+      |   GROUP BY (c.name)
+    """.stripMargin
+
+  }
+
   def toString(i: Int) = {
     val divBy4 = i % 4 == 0
     val divBy5 = i % 5 == 0
