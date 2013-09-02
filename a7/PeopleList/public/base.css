@@ -1,0 +1,19 @@
+
+table#people {
+    width: 800px;
+    margin: 1em;
+}
+
+table#people th {
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px dashed #A0A0A0;
+}
+
+table#people tr.richest {
+    font-weight: bold;
+}
+
+table#people th,td {
+    padding: 0.3em;
+}
